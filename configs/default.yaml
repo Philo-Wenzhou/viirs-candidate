@@ -1,0 +1,19 @@
+data:
+  url: "https://drum.lib.umd.edu/bitstreams/3998588b-a436-40b0-baa0-b1b44cd6cbf8/download"
+  filename: "joined_dets_2020.parquet"
+  sha256: "c0695f44f8aa49e3db40bfc4517368d4b638dc9d1b1251874d9e632a81961416"
+  data_doi: "10.13016/evnn-j0zz"
+  paper_doi: "10.1016/j.rse.2025.115156"
+  license: "CC0 1.0 Universal"
+  landing_page: "https://drum.lib.umd.edu/items/271a6284-4d2c-4d12-b62d-406096121873"
+
+analysis:
+  candidate_weights: [0.0, 0.25, 0.5, 1.0]
+  overpass_tolerance_minutes: 0
+  vza_bins: [0, 30, 45, 60, 75, 90]
+  bootstrap_replicates: 2000
+  random_seed: 20260915
+  map_case_count: 3
+  map_min_pixels: 100
+  map_min_frp_completeness: 0.95
+

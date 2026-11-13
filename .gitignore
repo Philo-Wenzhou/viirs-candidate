@@ -1,0 +1,21 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+build/
+dist/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.ipynb_checkpoints/
+
+# Source data are downloaded reproducibly and are not committed.
+data/raw/*
+!data/raw/.gitkeep
+
+# Curated empirical outputs are intentionally kept for review and are reproducible.

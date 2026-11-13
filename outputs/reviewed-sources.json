@@ -1,0 +1,192 @@
+{
+  "schemaVersion": 1,
+  "items": [
+    {
+      "id": "source-quality",
+      "title": "Was the public source file suitable for the audit?",
+      "queries": [
+        {
+          "id": "manifest-and-quality-report",
+          "source": {
+            "label": "DRUM VIIRS dataset and local quality report",
+            "files": [
+              {"label": "data/manifest.json"},
+              {"label": "outputs/quality_report.json"}
+            ],
+            "links": [
+              {
+                "label": "University of Maryland DRUM dataset",
+                "href": "https://drum.lib.umd.edu/items/271a6284-4d2c-4d12-b62d-406096121873"
+              }
+            ],
+            "metricDefinitions": [
+              {
+                "label": "Observation group",
+                "definition": "An observation group is one FEDS fire event, one satellite, and one exact UTC acquisition time."
+              }
+            ],
+            "filters": [
+              "Source sample: author-selected western US large-fire pixels from 2020",
+              "Classification: confidence and fire_mask must agree"
+            ],
+            "caveats": [
+              "The table contains selected detections rather than complete no-fire or no-observation overpasses."
+            ],
+            "evidenceFlow": [
+              {
+                "kind": "validation",
+                "title": "File identity",
+                "detail": "The downloaded Parquet contained 44,581,141 bytes and matched SHA256 c0695f44f8aa49e3db40bfc4517368d4b638dc9d1b1251874d9e632a81961416."
+              },
+              {
+                "kind": "validation",
+                "title": "Core quality checks",
+                "detail": "All 873,862 rows passed required grouping-key and classification checks; no exact duplicates, classification conflicts, negative FRP values, invalid coordinates, or UTC parsing failures were observed."
+              }
+            ]
+          },
+          "sourceRoles": [
+            {
+              "kind": "link",
+              "label": "University of Maryland DRUM dataset",
+              "href": "https://drum.lib.umd.edu/items/271a6284-4d2c-4d12-b62d-406096121873",
+              "role": "Provides the data description, downloadable files, related paper DOI, and CC0 declaration."
+            },
+            {
+              "kind": "file",
+              "label": "data/manifest.json",
+              "role": "Records the exact downloaded file, checksum, access time, license, DOIs, and software versions."
+            },
+            {
+              "kind": "file",
+              "label": "outputs/quality_report.json",
+              "role": "Records schema, missingness, validity, uniqueness, and eligibility checks."
+            }
+          ],
+          "reportingPeriod": "Source detections: June 1–November 28, 2020 (UTC)",
+          "columns": ["rows", "fire_events", "observation_groups", "known_pixels", "candidate_pixels"],
+          "rows": [
+            {
+              "rows": 873862,
+              "fire_events": 95,
+              "observation_groups": 9518,
+              "known_pixels": 706876,
+              "candidate_pixels": 166986
+            }
+          ],
+          "preview": {
+            "kind": "aggregate",
+            "note": "Aggregate counts from the complete downloaded source and generated audit outputs."
+          }
+        }
+      ]
+    },
+    {
+      "id": "effect-separation",
+      "title": "What changed after separating candidate inclusion from FRP retrieval?",
+      "assumptions": [
+        "Candidate weight w=1 includes every author-selected candidate at full recalculated FRP; it is not a truth probability."
+      ],
+      "queries": [
+        {
+          "id": "empirical-analysis-summary",
+          "source": {
+            "label": "Generated empirical analysis",
+            "files": [
+              {"label": "outputs/analysis_summary.json"},
+              {"label": "outputs/event_metrics.csv"},
+              {"label": "outputs/strata_metrics.csv"}
+            ],
+            "links": [
+              {
+                "label": "Related source paper DOI",
+                "href": "https://doi.org/10.1016/j.rse.2025.115156"
+              }
+            ],
+            "metricDefinitions": [
+              {
+                "label": "Candidate inclusion effect",
+                "definition": "Candidate inclusion compares recalculated FRP from known pixels plus weighted candidate pixels against recalculated FRP from known pixels alone."
+              },
+              {
+                "label": "Retrieval effect",
+                "definition": "The retrieval effect compares recalculated and original FRP on identical known pixels with both values present."
+              }
+            ],
+            "filters": [
+              "Candidate inclusion scenario: w=1",
+              "Observation grouping: exact UTC time within event and satellite",
+              "Retrieval comparison: matched known pixels only"
+            ],
+            "caveats": [
+              "Sample sums combine recorded instantaneous FRP values descriptively; they are not FRE, emissions, or a time-integrated energy estimate.",
+              "No independent truth labels were joined, so these results do not estimate precision or recall."
+            ],
+            "evidenceFlow": [
+              {
+                "kind": "calculation",
+                "title": "Effect separation",
+                "detail": "The candidate-inclusion ratio used recalculated FRP for both known and candidate pixels. The retrieval ratio used only matched known pixels, preventing candidate selection and FRP-method changes from sharing one comparison."
+              },
+              {
+                "kind": "validation",
+                "title": "Comparison coverage",
+                "detail": "All 706,876 known pixels had both recalculated and original FRP in the downloaded file, giving 100% retrieval comparison coverage."
+              }
+            ]
+          },
+          "sourceRoles": [
+            {
+              "kind": "file",
+              "label": "outputs/analysis_summary.json",
+              "role": "Contains the overall inclusion, retrieval, combined-effect, and event-resampling summaries."
+            },
+            {
+              "kind": "file",
+              "label": "outputs/event_metrics.csv",
+              "role": "Contains all 95 event-level results rather than selected positive cases."
+            },
+            {
+              "kind": "file",
+              "label": "outputs/strata_metrics.csv",
+              "role": "Contains day/night, satellite, and view-angle summaries with sample sizes."
+            },
+            {
+              "kind": "link",
+              "label": "Related source paper DOI",
+              "href": "https://doi.org/10.1016/j.rse.2025.115156",
+              "role": "Identifies the peer-reviewed study associated with the public table."
+            }
+          ],
+          "columns": [
+            {"field": "candidate_inclusion_pct", "label": "Candidate inclusion (%)"},
+            {"field": "retrieval_change_pct", "label": "Retrieval change (%)"},
+            {"field": "combined_change_pct", "label": "Combined change (%)"},
+            {"field": "day_inclusion_pct", "label": "Day inclusion (%)"},
+            {"field": "night_inclusion_pct", "label": "Night inclusion (%)"}
+          ],
+          "rows": [
+            {
+              "candidate_inclusion_pct": 16.01,
+              "retrieval_change_pct": -8.18,
+              "combined_change_pct": 6.52,
+              "day_inclusion_pct": 21.45,
+              "night_inclusion_pct": 3.24
+            }
+          ],
+          "methods": [
+            {
+              "language": "calculation",
+              "code": "Candidate inclusion = (new known + new candidates − new known) / new known\nRetrieval change = (new matched known − old matched known) / old matched known\nCombined change = (new known + new candidates − old known) / old known"
+            }
+          ],
+          "preview": {
+            "kind": "aggregate",
+            "note": "Rounded percentages from the generated complete-sample analysis summary."
+          }
+        }
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this audit code, cite this software and the source paper and dataset listed below."
+title: "VIIRS Candidate Fire Audit"
+type: software
+version: 0.1.0
+date-released: 2026-09-15
+authors:
+  - family-names: Yi
+    given-names: Wenxing
+license: MIT
+preferred-citation:
+  type: software
+  title: "VIIRS Candidate Fire Audit"
+  authors:
+    - family-names: Yi
+      given-names: Wenxing
+  year: 2026
+

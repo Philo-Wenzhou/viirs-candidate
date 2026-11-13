@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "retrieved_at_utc": "2026-09-15T09:40:25.959502+00:00",
+  "source_url": "https://drum.lib.umd.edu/bitstreams/3998588b-a436-40b0-baa0-b1b44cd6cbf8/download",
+  "landing_page": "https://drum.lib.umd.edu/items/271a6284-4d2c-4d12-b62d-406096121873",
+  "data_doi": "10.13016/evnn-j0zz",
+  "paper_doi": "10.1016/j.rse.2025.115156",
+  "license": "CC0 1.0 Universal",
+  "local_filename": "joined_dets_2020.parquet",
+  "bytes": 44581141,
+  "sha256": "c0695f44f8aa49e3db40bfc4517368d4b638dc9d1b1251874d9e632a81961416",
+  "software": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pandas": "2.2.3",
+    "pyarrow": "19.0.0"
+  }
+}

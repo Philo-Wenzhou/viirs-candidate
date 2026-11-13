@@ -1,0 +1,4 @@
+fireid,rows,frp_completeness,candidate_share,sample_sum_ratio_gain_w_1,name,selection_rule
+F11445,153628,1.0,0.15386518082641185,0.12465551694368081,AUGUST COMPLEX,largest_complete_event
+F9568,2215,1.0,0.6216704288939052,0.6763711932356131,,highest_candidate_share_among_complete
+F12811,627,1.0,0.02711323763955343,0.010498751158351798,,smallest_candidate_frp_effect_among_complete

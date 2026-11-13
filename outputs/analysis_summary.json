@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "source_rows_after_declared_exclusions": 873862,
+  "fire_events": 95,
+  "observation_groups": 9518,
+  "known_pixels": 706876,
+  "candidate_pixels": 166986,
+  "candidate_only_observation_groups": 661,
+  "comparable_w1_gain_groups": 8857,
+  "median_observation_relative_gain_w1": 0.0067985822984293525,
+  "sample_sum_ratio_gain_w1": 0.16008114280380573,
+  "daynight_detection_counts": {
+    "D": {
+      "known_pixels": 248038,
+      "candidate_pixels": 110519,
+      "candidate_to_known_ratio": 0.44557285577209943
+    },
+    "N": {
+      "known_pixels": 458838,
+      "candidate_pixels": 56467,
+      "candidate_to_known_ratio": 0.12306522127635462
+    }
+  },
+  "retrieval_matched_known_pixels": 706876,
+  "retrieval_known_pixels": 706876,
+  "matched_known_new_frp_sum": 13860217.759996794,
+  "matched_known_old_frp_sum": 15094857.050009236,
+  "retrieval_sample_sum_relative_change": -0.08179204916761276,
+  "combined_new_known_plus_candidates_vs_old_known_relative_change": 0.0651957289331764,
+  "event_resampling_w1_sample_sum_ratio_gain": {
+    "events": 95,
+    "mean": 0.15654347352521447,
+    "lower_95": 0.1297327466036854,
+    "upper_95": 0.18803084634528716,
+    "replicates": 2000,
+    "seed": 20260915,
+    "interpretation": "Event-resampling interval for variation within this public 2020 sample; not a confidence interval for candidate-pixel truth."
+  },
+  "interpretation_limits": [
+    "Candidate weights are sensitivity scenarios, not calibrated probabilities.",
+    "Sample-sum ratios aggregate instantaneous FRP values descriptively and are not FRE or emissions.",
+    "Detection spans describe recorded detections, not continuous physical burning duration.",
+    "No independent truth labels are used, so this analysis does not estimate precision or recall."
+  ]
+}

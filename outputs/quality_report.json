@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "dataset": {
+    "rows": 873862,
+    "columns": 22,
+    "column_names": [
+      "longitude",
+      "latitude",
+      "fire_mask",
+      "confidence",
+      "acq_date",
+      "acq_time",
+      "acq_datetime",
+      "j",
+      "vza",
+      "sza",
+      "daynight",
+      "i750",
+      "j750",
+      "frp",
+      "frp_old",
+      "dist_m13b",
+      "geometry",
+      "satellite",
+      "fireid",
+      "startdate",
+      "enddate",
+      "name"
+    ],
+    "dtypes": {
+      "longitude": "float64",
+      "latitude": "float64",
+      "fire_mask": "float64",
+      "confidence": "object",
+      "acq_date": "object",
+      "acq_time": "object",
+      "acq_datetime": "datetime64[ns, UTC]",
+      "j": "float64",
+      "vza": "float64",
+      "sza": "float64",
+      "daynight": "object",
+      "i750": "float64",
+      "j750": "float64",
+      "frp": "float64",
+      "frp_old": "float64",
+      "dist_m13b": "float64",
+      "geometry": "object",
+      "satellite": "object",
+      "fireid": "object",
+      "startdate": "datetime64[ns, UTC]",
+      "enddate": "datetime64[ns, UTC]",
+      "name": "object"
+    },
+    "grain_assumption": "one author-selected VIIRS pixel record within a FEDS fire event",
+    "time_min_utc": "2020-06-01T18:48:00+00:00",
+    "time_max_utc": "2020-11-28T10:24:00+00:00",
+    "distinct_fire_events": 95
+  },
+  "schema": {
+    "valid": true,
+    "missing_required_columns": [],
+    "extra_columns": [
+      "dist_m13b",
+      "enddate",
+      "geometry",
+      "i750",
+      "j",
+      "j750",
+      "name",
+      "startdate"
+    ]
+  },
+  "completeness": {
+    "null_rates": {
+      "longitude": 0.0,
+      "latitude": 0.0,
+      "fire_mask": 0.0,
+      "confidence": 0.0,
+      "acq_date": 0.0,
+      "acq_time": 0.0,
+      "acq_datetime": 0.0,
+      "j": 0.0,
+      "vza": 0.0,
+      "sza": 0.0,
+      "daynight": 0.0,
+      "i750": 0.0,
+      "j750": 0.0,
+      "frp": 0.0,
+      "frp_old": 0.1910896686204458,
+      "dist_m13b": 0.8840835280627833,
+      "geometry": 0.0,
+      "satellite": 0.0,
+      "fireid": 0.0,
+      "startdate": 0.0,
+      "enddate": 0.0,
+      "name": 0.22771444461482476
+    },
+    "all_missing_frp_rows": 0,
+    "all_missing_frp_old_rows": 166986
+  },
+  "classification": {
+    "status_counts": {
+      "known": 706876,
+      "candidate": 166986
+    },
+    "confidence_counts": {
+      "n": 613934,
+      "x": 166986,
+      "h": 58782,
+      "l": 34160
+    },
+    "fire_mask_counts": {
+      "0.0": 3306,
+      "2.0": 6974,
+      "3.0": 19677,
+      "4.0": 9349,
+      "5.0": 115560,
+      "6.0": 12120,
+      "7.0": 34160,
+      "8.0": 613934,
+      "9.0": 58782
+    },
+    "unknown_daynight_rows": 0,
+    "unknown_satellite_rows": 0
+  },
+  "validity": {
+    "invalid_coordinate_rows": 0,
+    "acq_datetime_parse_failures": 0,
+    "date_time_parts_parse_failures": 0,
+    "datetime_parts_mismatch_rows": 0,
+    "negative_frp_rows": 0,
+    "negative_frp_old_rows": 0,
+    "candidate_rows_with_frp_old": 0,
+    "known_rows_missing_frp_old": 0
+  },
+  "uniqueness": {
+    "exact_duplicate_rows_involved": 0,
+    "exact_duplicate_excess_rows": 0,
+    "identity_columns": [
+      "fireid",
+      "satellite",
+      "acq_datetime",
+      "longitude",
+      "latitude",
+      "confidence",
+      "fire_mask"
+    ],
+    "identity_duplicate_rows_involved": 0
+  },
+  "analysis_eligibility": {
+    "valid_class_and_required_keys_rows": 873862,
+    "excluded_invalid_classification_rows": 0,
+    "excluded_missing_group_key_rows": 0,
+    "policy": "Exact duplicate rows are removed after being reported. Classification conflicts and rows without event/satellite/UTC keys are excluded. Negative FRP values are logged and treated as missing for quantitative aggregation."
+  }
+}
