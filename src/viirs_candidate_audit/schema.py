@@ -60,14 +60,17 @@ def normalize(frame: pd.DataFrame) -> pd.DataFrame:
     out["confidence_normalized"] = out["confidence"].astype("string").str.strip().str.lower()
     out["daynight_normalized"] = out["daynight"].astype("string").str.strip().str.upper()
     out["satellite_normalized"] = out["satellite"].astype("string").str.strip().str.upper()
-    out["acq_datetime_utc"] = pd.to_datetime(out["acq_datetime"], utc=True, errors="coerce")
+    # Pin the normalized schema, not pandas' version-dependent inferred unit.
+    out["acq_datetime_utc"] = pd.to_datetime(
+        out["acq_datetime"], utc=True, errors="coerce"
+    ).astype("datetime64[ns, UTC]")
     out["date_time_from_parts_utc"] = pd.to_datetime(
         out["acq_date"].astype("string").str.strip()
         + " "
         + out["acq_time"].astype("string").str.strip(),
         utc=True,
         errors="coerce",
-    )
+    ).astype("datetime64[ns, UTC]")
 
     confidence = out["confidence_normalized"]
     mask = pd.to_numeric(out["fire_mask"], errors="coerce")

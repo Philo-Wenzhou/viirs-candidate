@@ -1,10 +1,23 @@
 from __future__ import annotations
 
 import pandas as pd
+import pytest
 
 from conftest import synthetic_frame
 from viirs_candidate_audit.quality import build_quality_report, prepare_analysis_frame
 from viirs_candidate_audit.schema import normalize
+
+
+@pytest.mark.parametrize("unit", ["s", "ms", "us", "ns"])
+def test_synthetic_datetime_resolution_contract(unit: str) -> None:
+    frame = synthetic_frame([{}, {}])
+    values = pd.Series(pd.to_datetime(["2020-08-01T12:00:00Z", None], utc=True))
+    frame["acq_datetime"] = values.astype(f"datetime64[{unit}, UTC]")
+    normalized = normalize(frame)
+    assert str(normalized["acq_datetime_utc"].dtype) == "datetime64[ns, UTC]"
+    assert str(normalized["date_time_from_parts_utc"].dtype) == "datetime64[ns, UTC]"
+    assert normalized.loc[0, "acq_datetime_utc"] == values.iloc[0]
+    assert pd.isna(normalized.loc[1, "acq_datetime_utc"])
 
 
 def test_synthetic_utc_and_classification_checks() -> None:
